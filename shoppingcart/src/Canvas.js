@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
-const Circle = () => {
-  return <canvas style={{ width: "100px", height: "100px" }} />;
+const Canvas = (props) => {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    //Our first draw
+    context.fillStyle = "#000000";
+    context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+  }, []);
+
+  return <canvas ref={canvasRef} {...props} />;
 };
 
-export default Circle;
+export default Canvas;
